@@ -1,3 +1,94 @@
 <resources>
-    <string name="app_name">AI_Float</string>
+    <string name="app_name">AI Float</string>
+    <string name="description_window_service_notification">AI 词典浮窗服务正在运行</string>
+    <string name="content_description_preferences">AI 词典设置</string>
+    <string name="title_window_service">悬浮窗口</string>
+    <string name="description_window_service">该服务会在屏幕显示 AI 词典快捷图标</string>
+    <string name="title_ask_ai">向 AI 提问</string>
+    <string name="message_accept_overlay_permission">请允许悬浮窗权限</string>
+    <string name="message_accept_necessary_permissions">请授予必要权限以正常使用</string>
+    <string name="title_what_would_you_like_to_ask">您想向 %s 询问什么？</string>
+    <string name="label_today">今天</string>
+    <string name="label_tonight">今晚</string>
+    <string name="content_description_full_screen">全屏模式</string>
+    <string name="content_description_open_gallery">选择媒体文件</string>
+    <string name="content_description_speech_to_text">语音转文字</string>
+    <string name="content_description_open_keyboard">打开键盘</string>
+    <string name="content_description_remove_attached_media">移除已选文件</string>
+    <string name="content_picked_media_from_gallery">已从相册选择媒体</string>
+    <string name="label_type_or_talk"> 文本/语音/图片</string>
+    <string name="label_say_some_thing">说点什么吧！</string>
+    <string name="content_description_send_command">发送指令</string>
+    <string name="error_check_network">网络连接异常，请检查网络</string>
+    <string name="label_none">暂无内容</string>
+    <string name="title_your_english_level">设定您的英语水平</string>
+    <string name="label_enter_value">请输入数值：</string>
+    <string name="title_api_key">API 密钥</string>
+    <string name="description_api_key">请输入 OpenAI 或 DeepSeek 的开发者密钥</string>
+    <string name="label_submit">提交</string>
+    <string name="error_model_config">模型配置异常，请检查参数设置</string>
+    <string name="content_description_try_again">重新尝试</string>
+    <string name="content_description_google_result">谷歌搜索结果片段</string>
+    <string name="content_description_share_result">分享结果</string>
+    <string name="content_description_copy">复制内容</string>
+    <string name="content_description_anki">创建 Anki 卡片</string>
+    <string name="content_save_as_temporary_card">保存为临时卡片</string>
+    <string name="title_share_via">分享至</string>
+    <string name="content_description_github">项目开源地址</string>
+    <string name="label_code_available_on">本项目已开源，代码可在以下平台获取：</string>
+    <string name="label_github">GitHub</string>
+    <string name="message_save_accomplished">保存成功</string>
+    <string name="content_description_swipe_to_delete_card">左滑删除卡片</string>
+    <string name="content_description_swipe_to_add_anki">左滑添加到 Anki</string>
+    <string name="description_english_level">请根据实际水平设定</string>
+    <string name="title_request_timeout">请求超时设置</string>
+    <string name="description_request_timeout">设置请求超时时间（毫秒）</string>
+    <string name="title_temperature">输出随机性</string>
+    <string name="description_temperature">控制输出的随机程度。较低数值适合确定性回答，较高数值会更开放。0 为完全确定性输出</string>
+    <string name="title_top_p">候选概率阈值</string>
+    <string name="description_top_p">控制输出候选范围。例如：当候选总概率达到设定值时停止筛选。默认值为 0.95</string>
+    <string name="title_delete_after_share_to_anki">分享后自动删除</string>
+    <string name="description_delete_after_share_to_anki">将临时卡片分享给 Anki 后自动删除</string>
+    <string name="title_your_ai_service_provider">AI 服务提供商</string>
+    <string name="description_your_ai_service_provider">请选择您要使用的 AI 服务</string>
+    <string name="title_default_instructions">系统指令</string>
+    <string name="description_default_instructions">设定 AI 的基础行为规范和语气风格</string>
+    <string name="default_instructions">
+        为任何英文单词生成高质量的 Anki 记忆卡，格式要求：
+        正面：
+        单词本体
+        助记提示：
+        简短的记忆技巧
+        视觉联想：
+        生动的图像联想
+        背面：
+        近义词：常用替代词（控制词量）
+        反义词：明确对应词（控制词量）
+        发音：IPA + 拼读示范
+        释义：简明易懂的解释
+        例句：包含上下文的真实例句
+        用法：常见搭配和固定用法
+        词族：名词/动词等变形（如有）
+        测试：一道实际应用测试题并标注正确答案
+        规则：
+         - 保持简洁清晰
+         - 强调间隔重复和主动回忆
+         - 不添加额外内容
+        交互规范：
+        英语练习：
+         - 纠正错误
+         - 解释原因
+         - 推荐改写
+        语法问题：
+         - 直接解释 + 示例说明
+    </string>
+    <string name="language_preference">我的英语水平： %s</string>
+    <string name="answer_limit">非英语学习相关问题请回复：我专注于英语学习辅助</string>
+    <string name="content_description_command_options">指令选项</string>
+    <string name="error_select_an_ai_model">请先从指令选项中选择 AI 模型</string>
+    <string name="title_max_completion_tokens">最大输出长度</string>
+    <string name="description_max_completion_tokens">限制模型输出的最大 token 数量（包含可见内容和推理过程）</string>
+    <string name="error_speech_to_text_not_ready">语音转文字功能正在开发中</string>
+    <string name="title_export_type">导出方式</string>
+    <string name="description_exportType">可选择导出为 Anki 卡片或复制结果</string>
 </resources>
