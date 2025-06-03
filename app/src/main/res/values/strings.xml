@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">AI Float</string>
-    <string name="description_window_service_notification">AI 词典浮窗服务正在运行</string>
-    <string name="content_description_preferences">AI 词典设置</string>
+    <string name="description_window_service_notification">悬浮窗服务正在运行</string>
+    <string name="content_description_preferences">设置</string>
     <string name="title_window_service">悬浮窗口</string>
-    <string name="description_window_service">该服务会在屏幕显示 AI 词典快捷图标</string>
+    <string name="description_window_service">该服务会在其他应用上显示快捷图标</string>
     <string name="title_ask_ai">向 AI 提问</string>
     <string name="message_accept_overlay_permission">请允许悬浮窗权限</string>
     <string name="message_accept_necessary_permissions">请授予必要权限以正常使用</string>
-    <string name="title_what_would_you_like_to_ask">您想向 %s 询问什么？</string>
+    <string name="title_what_would_you_like_to_ask">您想向询问什么？</string>
     <string name="label_today">今天</string>
-    <string name="label_tonight">今晚</string>
-    <string name="content_description_full_screen">全屏模式</string>
+    <string name="label_tonight">晚上</string>
+    <string name="content_description_full_screen"> </string>
     <string name="content_description_open_gallery">选择媒体文件</string>
     <string name="content_description_speech_to_text">语音转文字</string>
     <string name="content_description_open_keyboard">打开键盘</string>

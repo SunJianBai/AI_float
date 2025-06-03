@@ -8,13 +8,23 @@ import androidx.core.net.toUri
 import com.sun.ai.aifloat.common.Constants
 
 class IntentResolver(private val context: Context) {
-    fun googleResult(query: String): Boolean {
-        return launchIntent {
-            action = Intent.ACTION_WEB_SEARCH
-            putExtra(SearchManager.QUERY, query)
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
+/**
+ * 启动谷歌网络搜索意图并返回操作结果状态
+ *
+ * @param query 需要执行搜索的查询内容
+ * @return Boolean 指示意图启动是否成功（true=成功启动，false=启动失败）
+ */
+fun googleResult(query: String): Boolean {
+    return launchIntent {
+        // 设置意图动作为网络搜索
+        action = Intent.ACTION_WEB_SEARCH
+        // 将查询参数注入意图
+        putExtra(SearchManager.QUERY, query)
+        // 配置活动启动标志为新建任务栈
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
     }
+}
+
 
     fun shareText(
         chooserTitle: String,

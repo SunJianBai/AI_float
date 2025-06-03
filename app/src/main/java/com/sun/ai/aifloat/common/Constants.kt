@@ -90,7 +90,7 @@ object Constants {
     }
 
     object Intent {
-        const val GITHUB_URI: String = "https://github.com/BasetEsmaeili/AiDict"
+        const val GITHUB_URI: String = "https://github.com/SunJianBai/AI_float"
         const val ANKI_PACKAGE = "com.ichi2.anki"
         const val ANKI_ACTION = "org.openintents.action.CREATE_FLASHCARD"
         const val CARD_FRONT = "SOURCE_TEXT"

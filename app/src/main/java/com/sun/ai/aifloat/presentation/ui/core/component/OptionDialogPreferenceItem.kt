@@ -116,7 +116,7 @@ private fun SelectOptionDialog(
     onDismissRequest: () -> Unit,
     onOptionItemSelected: (selectedItem: OptionItem) -> Unit
 ) {
-    AiDictDialog(onDismissRequest) {
+    AiDialog(onDismissRequest) {
         Card(
             modifier = modifier
                 .clickable(

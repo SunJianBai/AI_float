@@ -23,7 +23,7 @@ fun RadioOptionDialog(
     onPreferenceItemClicked: (PreferenceItem) -> Unit,
     onDismissRequest: () -> Unit,
 ) {
-    AiDictDialog(onDismissRequest) {
+    AiDialog(onDismissRequest) {
         Card(
             modifier = modifier
                 .clickable(

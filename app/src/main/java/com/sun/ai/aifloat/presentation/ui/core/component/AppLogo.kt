@@ -28,7 +28,7 @@ import com.sun.ai.aifloat.presentation.ui.core.theme.margin4
 @Composable
 fun AppLogo(
     modifier: Modifier = Modifier,
-    background: Color = colorResource(R.color.approval_green),
+    background: Color = colorResource(R.color.black),
     shape: Shape = CircleShape,
     borderWidth: Dp = appLogoBorderRadius,
     borderColor: Color = colorResource(R.color.white),
@@ -55,7 +55,7 @@ fun AppLogo(
                 interactionSource = interactionSource,
                 indication = null
             ),
-        painter = painterResource(R.drawable.ic_logo),
+        painter = painterResource(R.drawable.ic_launcher_notif),
         colorFilter = logoColorFilter,
         contentDescription = stringResource(R.string.app_name)
     )
