@@ -22,6 +22,7 @@ activity_version = "1.10.1"
 fragment_version = "1.8.6"
 constraint_layout = "1.1.1"
 room_version = "2.6.1"
+junitVersion = "4.12"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
@@ -70,6 +71,7 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room_ver
 richeditor-compose = { module = "com.mohamedrejeb.richeditor:richeditor-compose", version.ref = "richeditorComposeVersion" }
 openai-client = { module = "com.aallam.openai:openai-client", version.ref = "openaiClientBomVersion" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClientOkhttpVersion" }
+junit = { group = "junit", name = "junit", version.ref = "junitVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

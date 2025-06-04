@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.sun.ai.aifloat.R
 import com.sun.ai.aifloat.presentation.service.OverlayServiceManager
 import com.sun.ai.aifloat.presentation.ui.core.model.UiText
@@ -22,6 +23,7 @@ import com.sun.ai.aifloat.presentation.util.isNecessaryPermissionsAvailable
 import com.sun.ai.aifloat.presentation.util.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+
 
 class MainActivity : ComponentActivity() {
 

@@ -22,13 +22,13 @@
     <string name="error_check_network">网络连接异常，请检查网络</string>
     <string name="label_none">暂无内容</string>
     <string name="title_your_english_level">设定您的英语水平</string>
-    <string name="label_enter_value">请输入数值：</string>
+    <string name="label_enter_value">请输入api-key</string>
     <string name="title_api_key">API 密钥</string>
     <string name="description_api_key">请输入 OpenAI 或 DeepSeek 的开发者密钥</string>
     <string name="label_submit">提交</string>
     <string name="error_model_config">模型配置异常，请检查参数设置</string>
     <string name="content_description_try_again">重新尝试</string>
-    <string name="content_description_google_result">谷歌搜索结果片段</string>
+    <string name="content_description_google_result">搜索结果片段</string>
     <string name="content_description_share_result">分享结果</string>
     <string name="content_description_copy">复制内容</string>
     <string name="content_description_anki">创建 Anki 卡片</string>

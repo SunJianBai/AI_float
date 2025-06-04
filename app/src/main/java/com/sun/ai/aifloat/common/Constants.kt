@@ -87,6 +87,7 @@ object Constants {
             DEEP_SEEK
         )
         const val DEEP_SEEK_BASE_URL = "https://api.deepseek.com"
+        //const val DEEP_SEEK_BASE_URL = "https://api.siliconflow.cn/v1"
     }
 
     object Intent {
