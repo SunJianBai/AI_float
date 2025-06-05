@@ -1026,7 +1026,7 @@ private fun HeaderSection(
     ) {
         Icon(
             modifier = Modifier.size(appLogoSizeForAskAi),
-            painter = painterResource(R.drawable.ic_logo),
+            painter = painterResource(R.drawable.ic_launcher_notif),
             tint = colorResource(R.color.black),
             contentDescription = stringResource(R.string.app_name)
         )

@@ -31,7 +31,7 @@ object Constants {
 
         const val REQUEST_TIME_OUT = "request_time_out"
         val keyRequestTimeout = longPreferencesKey(REQUEST_TIME_OUT)
-        const val REQUEST_TIME_OUT_DEFAULT_VALUE = 5000L
+        const val REQUEST_TIME_OUT_DEFAULT_VALUE = 30000L
 
         const val TEMPERATURE = "temperature"
         val keyTemperature = doublePreferencesKey(TEMPERATURE)

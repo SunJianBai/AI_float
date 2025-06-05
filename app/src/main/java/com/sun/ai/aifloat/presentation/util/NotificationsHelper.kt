@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import com.sun.ai.aifloat.R
 import com.sun.ai.aifloat.presentation.ui.main.MainActivity
 
+//用于创建通知
 object NotificationsHelper {
 
     private const val NOTIFICATION_CHANNEL_ID = "ai_dict_notification"
@@ -30,6 +31,7 @@ object NotificationsHelper {
     }
 
     @JvmStatic
+    //创建窗口服务通知
     fun buildWindowServiceNotification(context: Context): Notification {
         return NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
             .setContentTitle(context.getString(R.string.app_name))
