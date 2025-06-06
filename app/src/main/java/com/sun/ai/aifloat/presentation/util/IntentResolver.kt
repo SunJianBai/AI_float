@@ -7,13 +7,15 @@ import android.content.Intent
 import androidx.core.net.toUri
 import com.sun.ai.aifloat.common.Constants
 
-class IntentResolver(private val context: Context) {
 /**
  * 启动谷歌网络搜索意图并返回操作结果状态
  *
  * @param query 需要执行搜索的查询内容
  * @return Boolean 指示意图启动是否成功（true=成功启动，false=启动失败）
  */
+class IntentResolver(private val context: Context) {
+
+// 执行谷歌网络搜索
 fun googleResult(query: String): Boolean {
     return launchIntent {
         // 设置意图动作为网络搜索
@@ -25,7 +27,7 @@ fun googleResult(query: String): Boolean {
     }
 }
 
-
+    // 分享文本
     fun shareText(
         chooserTitle: String,
         textToShare: String
@@ -37,7 +39,7 @@ fun googleResult(query: String): Boolean {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
     }
-
+    // 创建Anki卡片
     fun createAnkiCard(
         front: String,
         back: String
@@ -50,7 +52,7 @@ fun googleResult(query: String): Boolean {
             `package` = Constants.Intent.ANKI_PACKAGE
         }
     }
-
+    // 打开项目GitHub页面
     fun openProjectOnGithub() {
         launchIntent {
             action = Intent.ACTION_VIEW
@@ -58,7 +60,7 @@ fun googleResult(query: String): Boolean {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
     }
-
+    // 启动意图
     private fun launchIntent(intent: Intent.() -> Unit): Boolean {
         return try {
             context.startActivity(Intent().apply(intent))
@@ -67,7 +69,7 @@ fun googleResult(query: String): Boolean {
             false
         }
     }
-
+    // 启动选择器意图
     private fun launchChooserIntent(
         chooserTitle: String,
         intent: Intent.() -> Unit

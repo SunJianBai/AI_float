@@ -2,6 +2,8 @@ package com.sun.ai.aifloat.presentation.service
 
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -16,13 +18,19 @@ import com.sun.ai.aifloat.presentation.ui.core.theme.appLogoSizeForOverlayServic
 import com.sun.ai.aifloat.presentation.util.NotificationsHelper
 import com.sun.ai.aifloat.presentation.util.isSdk34OrUp
 
+// 快捷方式窗口服务
+// 显示悬浮窗并处理点击事件跳转到AI主界面
+@RequiresApi(Build.VERSION_CODES.R)
 class ShortcutWindowService : ComposeOverlayViewService() {
     private val overlayVisible = mutableStateOf(true)
+
+    // 启动服务
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         start(startId)
         return super.onStartCommand(intent, flags, startId)
     }
 
+    // 启动前台服务
     private fun start(startId: Int) {
         NotificationsHelper.createNotificationChannel(this)
         ServiceCompat.startForeground(
@@ -37,12 +45,14 @@ class ShortcutWindowService : ComposeOverlayViewService() {
         )
     }
 
+    // 实现父类的Content方法
+    @RequiresApi(Build.VERSION_CODES.R)
     @Composable
     override fun Content() {
         OverlayDraggableContainer {
             val overlayVisible by remember { this@ShortcutWindowService.overlayVisible }
             AnimatedVisibility(overlayVisible) {
-                AppLogo(
+                AppLogo( // 应用LOGO组件
                     modifier = Modifier.size(appLogoSizeForOverlayService),
                     onClick = this@ShortcutWindowService::onOverlayBubbleClicked
                 )
@@ -50,10 +60,10 @@ class ShortcutWindowService : ComposeOverlayViewService() {
         }
     }
 
+    // 悬浮窗点击事件处理
     private fun onOverlayBubbleClicked() {
         startActivity(Intent(this, AiActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         })
     }
-
 }

@@ -2,8 +2,10 @@ package com.sun.ai.aifloat.presentation.service
 
 import android.content.Context
 import android.hardware.display.DisplayManager
+import android.os.Build
 import android.view.Display
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
@@ -12,46 +14,42 @@ import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import com.sun.ai.aifloat.presentation.util.lazyFast
 
-/**
- * Service that is ready to display view, provide a ui context on the primary screen, and all the tools needed to built a view with state management, view model etc
- */
+// 视图就绪服务基类
+// 提供显示视图所需的上下文和状态管理工具
+@RequiresApi(Build.VERSION_CODES.R)
 abstract class ViewReadyService : LifecycleService(), SavedStateRegistryOwner, ViewModelStoreOwner {
 
-    /**
-     * Build our saved state registry controller
-     */
+    // 初始化保存状态注册表控制器
     private val savedStateRegistryController: SavedStateRegistryController by lazyFast {
         SavedStateRegistryController.create(this)
     }
 
-    /**
-     * Build our view model store
-     */
+    // 初始化视图模型存储
     private val internalViewModelStore: ViewModelStore by lazyFast {
         ViewModelStore()
     }
 
-    /**
-     * Context dedicated to the view
-     */
+    // 创建覆盖视图的上下文
     internal val overlayContext: Context by lazyFast {
-        // Get the default display
+        // 获取默认显示屏
         val defaultDisplay: Display =
             getSystemService(DisplayManager::class.java).getDisplay(Display.DEFAULT_DISPLAY)
-        // Create a display context, and then the window context
+        // 创建显示上下文和窗口上下文
         createDisplayContext(defaultDisplay)
             .createWindowContext(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY, null)
     }
-
+    // onCreate方法中恢复保存的状态
     override fun onCreate() {
         super.onCreate()
-        // Restore the last saved state registry
+        // 恢复保存的状态
         savedStateRegistryController.performRestore(null)
     }
 
+    // 实现SavedStateRegistryOwner接口
     override val savedStateRegistry: SavedStateRegistry
         get() = savedStateRegistryController.savedStateRegistry
 
+    // 实现ViewModelStoreOwner接口
     override val viewModelStore: ViewModelStore
         get() = internalViewModelStore
 }

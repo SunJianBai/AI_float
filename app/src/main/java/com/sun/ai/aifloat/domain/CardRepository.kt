@@ -3,6 +3,7 @@ package com.sun.ai.aifloat.domain
 import com.sun.ai.aifloat.domain.entity.Card
 import kotlinx.coroutines.flow.Flow
 
+//  CardRepository类：定义了CardRepository接口，用于管理卡片数据。
 interface CardRepository {
     suspend fun insertCard(card: Card)
     suspend fun getCard(id: Int): Card

@@ -13,9 +13,10 @@ import com.sun.ai.aifloat.R
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import java.util.Locale
-
+// 生命周期感知的语音识别器
 class LifecycleAwareSpeechRecognizer private constructor(private val builder: Builder) {
     class Builder(
+        // 构建者模式配置语音识别参数
         val context: Context,
         val lifecycleOwner: LifecycleOwner
     ) {
@@ -102,28 +103,28 @@ class LifecycleAwareSpeechRecognizer private constructor(private val builder: Bu
         })
     }
 
-    fun startListening() {
+    fun startListening() {   // 开始监听语音输入
         require(this::speechRecognizer.isInitialized) {
             "The speechRecognizer has not been initialized!"
         }
         speechRecognizer.startListening(recognizerIntent)
     }
 
-    fun stopListening() {
+    fun stopListening() {   // 停止监听
         require(this::speechRecognizer.isInitialized) {
             "The speechRecognizer has not been initialized!"
         }
         speechRecognizer.stopListening()
     }
 
-    fun cancel() {
+    fun cancel() {   // 取消语音识别
         require(this::speechRecognizer.isInitialized) {
             "The speechRecognizer has not been initialized!"
         }
         speechRecognizer.cancel()
     }
 
-    fun checkRecognitionSupported() = callbackFlow {
+    fun checkRecognitionSupported() = callbackFlow {   // 检查是否支持语音识别
         if (isSdk33OrUp) {
             speechRecognizer.checkRecognitionSupport(
                 recognizerIntent,
@@ -156,7 +157,7 @@ class LifecycleAwareSpeechRecognizer private constructor(private val builder: Bu
         awaitClose()
     }
 
-    data class SupportResult(
+    data class SupportResult(   // 语音识别支持结果
         val supported: Boolean = false,
         val errorCode: Int? = null
     )

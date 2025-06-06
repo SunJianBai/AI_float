@@ -9,6 +9,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 import androidx.annotation.StringRes
 
+// 资源提供者
+// 统一管理字符串资源获取
 class ResourceProvider(private val context: Context) {
 
     fun getString(@StringRes stringRes: Int): String {

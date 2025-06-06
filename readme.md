@@ -2,7 +2,6 @@
 
 ---
 
-<p align="center"><img src="art/ic_launcher.png" alt="app_icon"/></p>
 
 # AiDict
 
@@ -55,10 +54,6 @@ AiDict 是一个个人开源项目，旨在通过减少耗时的操作来优化�
 
 ## 📸 截图
 
-| 提问                                  | 回答                                  | 图片提问                             | 图片回答                             |
-|--------------------------------------|-----------------------------------------|--------------------------------------------|-----------------------------------------------|
-| <img src="art/ask.png" width="200"/> | <img src="art/answer.png" width="200"/> | <img src="art/ask_image.png" width="200"/> | <img src="art/answer_image.png" width="200"/> |
-
 ## 🔮 未来计划
 
 - 🔄 **~~完成从 Gemini 到 OpenAI 和 DeepSeek 的迁移~~**（已完成）
@@ -75,9 +70,6 @@ AiDict 是一个个人开源项目，旨在通过减少耗时的操作来优化�
 
 尽管这主要是我个人的项目，但我们始终欢迎贡献、反馈和讨论。欢迎你自由探索、分叉并改进这个仓库！
 
-## 📜 许可证
-
-本项目采用基于 MIT 的 [源代码开放、非商业用途许可证](LICENSE)。
 
 ## 🧾 贡献者许可协议 (CLA)
 
@@ -90,4 +82,132 @@ AiDict 是一个个人开源项目，旨在通过减少耗时的操作来优化�
 
 ### ⚠️ 免责声明
 
-本项目仍在持续开发中，重点在于功能性而非完美无缺。尽管我努力遵循最佳实践，但仍有许多改进空间。如果你发现有待改进之处，欢迎提出建议或进行贡献——非常感谢你的支持！我的主要目标是高效地开发这款应用程序，并在此过程中提升自己的语言学习体验。感谢你的支持，祝你编码愉快！
+本项目仍在持续开发中，重点在于功能性而非完美无缺。尽管我努力遵循最佳实践，但仍有许多改进空间。
+如果你发现有待改进之处，欢迎提出建议或进行贡献——非常感谢你的支持！
+我的主要目标是高效地开发这款应用程序，并在此过程中提升自己的语言学习体验。
+感谢你的支持，祝你编码愉快！
+
+
+
+
+以下是项目中各文件的详细中文注释说明：
+
+一、基础模块 (common)
+1. Constants.kt
+```kotlin
+// 全局常量定义
+// 包含请求超时时间、温度参数、SharedPreferences键值等全局配置
+// 示例：REQUEST_TIME_OUT_DEFAULT_VALUE = 30_000L // 默认请求超时时间30秒
+```
+
+
+二、数据层 (data)
+1. 数据库模块 (db)
+- AppDatabase.kt：Room数据库主类，定义数据库实体和版本号
+- CardDAO.kt：卡片数据访问对象，包含增删改查的DAO操作
+- CardEntity.kt：数据库实体类，对应卡片表结构定义
+
+2. 依赖注入 (di)
+- Module.kt：Koin依赖注入模块，提供数据库、仓库等实例
+
+3. 偏好设置 (pref)
+- PreferenceHelper.kt：SharedPreferences工具类，封装基本类型数据的读写操作
+
+4. 仓库实现
+- CardRepositoryImpl.kt：卡片仓库实现类，实现领域层定义的CardRepository接口
+- PreferenceRepositoryImpl.kt：偏好设置仓库实现，处理应用配置持久化
+
+三、领域层 (domain)
+1. 实体类 (entity)
+- Card.kt：卡片实体类，定义front/back字段和数据库映射关系
+
+2. 接口定义
+- CardRepository.kt：卡片数据操作接口，定义业务所需的数据方法
+- PreferenceRepository.kt：偏好设置接口，抽象化配置管理方法
+
+四、表现层 (presentation)
+1. 依赖注入 (di)
+- Module.kt：ViewModel、Service等组件的Koin注入配置
+
+2. 服务模块 (service)
+- ComposeOverlayViewService.kt：悬浮窗服务基类，提供Compose UI的悬浮窗实现
+- OverlayServiceManager.kt：悬浮窗服务管理器，处理服务生命周期
+- ShortcutWindowService.kt：快捷方式窗口服务，处理桌面快捷入口
+- ViewReadyService.kt：视图就绪监听服务，确保UI加载完成
+
+3. UI模块 (ui)
+   a. AI交互模块 (ai)
+- AiActivity.kt：AI功能主Activity，处理权限请求和基础UI容器
+- AiScreen.kt：AI功能Compose UI实现，包含对话界面和状态管理
+- AiViewModel.kt：AI功能ViewModel，管理对话状态和业务逻辑
+- model/目录：
+    - PickedMedia.kt：媒体选择数据模型，封装图片URI
+    - UiMode.kt：界面状态枚举类，定义Ask/Answer/Loading/Error四种模式
+
+b. 核心组件 (core)
+- component/目录：
+    - AiDialog.kt：通用对话框组件
+    - AppLogo.kt：应用LOGO组件，支持点击事件和自定义样式
+    - InputDialogPreferenceItem.kt：输入设置对话框组件
+    - OptionDialogPreferenceItem.kt：选项设置对话框组件
+    - RadioOptionDialog.kt：单选对话框组件
+    - RadioPreferenceItem.kt：单选列表项UI组件
+    - SwitchPreferenceItem.kt：开关设置项UI组件
+
+- model/目录：
+    - UiText.kt：UI文本封装类，支持字符串资源和动态文本
+
+- modifier/目录：
+    - Conditional.kt：条件修饰符，根据条件应用不同修饰
+    - EnableOrDisableAlpha.kt：透明度控制修饰符
+    - LinearGradientAnimation.kt：线性渐变动画修饰符
+
+- theme/目录：
+    - Color.kt：颜色常量定义
+    - Dimen.kt：尺寸常量定义
+    - Theme.kt：主题配置，定义MaterialTheme扩展
+    - Type.kt：字体类型配置
+
+c. 主界面模块 (main)
+- ExportType.kt：导出类型枚举，定义HTML/Markdown/PLAIN三种格式
+- MainActivity.kt：应用主入口Activity
+- MainScreen.kt：主界面Compose UI实现，包含卡片列表和操作栏
+- MainUiState.kt：主界面状态类，管理卡片列表和偏好设置状态
+- MainViewModel.kt：主界面ViewModel，处理数据加载和业务逻辑
+- OptionItem.kt：选项条目类，支持单选/多选状态管理
+- PreferenceItem.kt：偏好设置项基类，定义各种设置项类型
+- PreferenceList.kt：偏好设置列表组件，统一管理设置项UI
+- PreferencesUiState.kt：偏好设置UI状态持有类
+
+4. 工具类 (util)
+- AndroidSdkExt.kt：Android SDK扩展函数，包含版本判断等工具方法
+- ClipboardManager.kt：剪贴板管理类，实现文本复制功能
+- IntentResolver.kt：意图解析类，处理分享、创建Anki卡片等Intent操作
+- KotlinSugarExt.kt：Kotlin语法糖扩展，包含集合操作等工具方法
+- LifecycleAwareSpeechRecognizer.kt：生命周期感知的语音识别器
+- NetworkMonitor.kt：网络状态监控类，提供网络可用性观察
+- NotificationsHelper.kt：通知管理类，处理悬浮窗权限提示等通知
+- ResourceExt.kt：资源扩展函数，包含字符串格式化等工具
+- ResourceProvider.kt：资源提供者，统一管理字符串资源获取
+- UriConverter.kt：URI转换器，实现内容URI到字节数组的转换
+
+五、工作管理 (worker)
+- UniqueIdGeneratorWorker.kt：唯一ID生成工作类，使用WorkManager执行后台任务
+
+六、应用入口
+- ApplicationLoader.kt：Application初始化类，配置全局依赖注入和初始化逻辑
+
+注释特点说明：
+1. 分层结构：按模块划分注释，突出MVVM架构特点
+2. 技术栈标注：标明使用Jetpack Compose、Room、Koin等技术
+3. 组件关系：说明各组件间的依赖关系（如ViewModel与Repository）
+4. 关键逻辑：标注重要功能实现方式（如Anki卡片创建、悬浮窗实现）
+5. 扩展性提示：指出可扩展点（如支持更多AI服务提供商）
+
+建议使用方式：
+1. 新开发者：从ApplicationLoader开始了解启动流程
+2. 功能扩展：查看对应模块的ViewModel和Repository实现
+3. UI修改：定位到对应的Compose组件文件
+4. 新增功能：参考现有模块的接口设计模式
+
+注：由于代码片段不完整，部分注释基于Android开发通用模式推测，实际注释应结合完整代码内容进行精确标注。

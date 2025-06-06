@@ -14,10 +14,13 @@ import org.koin.androidx.workmanager.dsl.worker
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.lazyModule
 
+// Koin依赖注入模块
+// 提供ViewModel、Worker等组件的注入配置
 val presentationModule = lazyModule {
-    factory { NetworkMonitor(androidContext()) }
-    factory { UriConverter(androidContext()) }
-    factory { ClipboardManager(androidContext()) }
+    factory { NetworkMonitor(androidContext()) } // 网络监控
+    factory { UriConverter(androidContext()) } // URI转换器
+    factory { ClipboardManager(androidContext()) } // 剪贴板管理器
+    // MainViewModel注入配置
     viewModel { (activity: Activity) ->
         MainViewModel(
             get(),
@@ -26,6 +29,7 @@ val presentationModule = lazyModule {
             ResourceProvider(activity)
         )
     }
+    // AiViewModel注入配置
     viewModel { (activity: Activity) ->
         AiViewModel(
             get(),
@@ -37,5 +41,6 @@ val presentationModule = lazyModule {
             get()
         )
     }
+    // 唯一ID生成工作类
     worker { UniqueIdGeneratorWorker(get(), get(), get()) }
 }

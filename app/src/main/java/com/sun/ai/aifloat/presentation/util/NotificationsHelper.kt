@@ -31,7 +31,7 @@ object NotificationsHelper {
     }
 
     @JvmStatic
-    //创建窗口服务通知
+    //创建悬浮窗服务通知
     fun buildWindowServiceNotification(context: Context): Notification {
         return NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
             .setContentTitle(context.getString(R.string.app_name))
