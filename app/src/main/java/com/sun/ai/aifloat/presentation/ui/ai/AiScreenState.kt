@@ -38,16 +38,45 @@ class AiScreenState(
     }
 }
 
+/**
+ * 消息密封类
+ * 功能：
+ * - 定义不同类型的消息类型
+ * - 实现多态消息处理
+ */
 @Immutable
 sealed class Message {
-    // 用户消息
+    /**
+     * 用户发送的消息
+     * 参数：
+     * - text: 消息文本内容
+     */
     data class UserMessage(val text: String) : Message()
-    // AI回复消息
+    
+    /**
+     * AI回复的消息
+     * 参数：
+     * - text: 回复文本内容
+     */
     data class AiResponse(val text: String) : Message()
-    // 错误消息
+    
+    /**
+     * 错误消息
+     * 参数：
+     * - error: 错误描述信息
+     */
     data class ErrorMessage(val error: String) : Message()
 }
 
+/**
+ * 主题模式枚举类
+ * 功能：
+ * - 管理应用的主题显示模式
+ * 枚举值：
+ * - System: 系统默认主题
+ * - Light: 亮色主题
+ * - Dark: 暗色主题
+ */
 enum class ThemeMode {
     System, // 系统主题
     Light,  // 亮色主题

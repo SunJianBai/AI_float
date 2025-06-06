@@ -56,14 +56,12 @@
     <string name="description_default_instructions">设定 AI 的基础行为规范和语气风格</string>
     <string name="default_instructions">
         为任何英文单词生成高质量的 Anki 记忆卡，格式要求：
-        正面：
         单词本体
         助记提示：
         简短的记忆技巧
         视觉联想：
         生动的图像联想
 
-        背面：
         近义词：常用替代词（控制词量）（带中文释义）
         反义词：明确对应词（控制词量）（带中文释义）
         发音：IPA + 拼读示范

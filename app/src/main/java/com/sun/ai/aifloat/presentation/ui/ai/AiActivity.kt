@@ -29,6 +29,13 @@ class AiActivity : ComponentActivity() {
     // 使用Koin注入AiViewModel
     private val viewModel by viewModel<AiViewModel> { parametersOf(this) }
 
+    /**
+     * Activity创建时的初始化操作
+     * 功能：
+     * - 设置全屏显示
+     * - 初始化悬浮窗服务
+     * - 配置Compose UI
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 设置全屏显示
@@ -63,6 +70,11 @@ class AiActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * 处理新的Intent数据
+     * 参数：
+     * - intent: 新的Intent对象
+     */
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         // 处理新的Intent数据

@@ -56,7 +56,7 @@ AiDict 是一个个人开源项目，旨在通过减少耗时的操作来优化�
 
 
 
-以下是项目中各文件的详细中文注释说明：
+## 以下是项目中各文件的详细中文注释说明：
 
 一、基础模块 (common)
 1. Constants.kt
@@ -416,8 +416,8 @@ UI组件库
                           +-------------------+
 ```
 
-
 **包依赖关系**：  
+
 1. `presentation` → `domain`：UI 层调用领域层接口  
 2. `domain` → `data`：领域层依赖数据层实现  
 3. `external` 提供第三方库支持：  
@@ -464,3 +464,47 @@ UI组件库
 
 
 
+
+
+
+
+
+
+## 类图说明
+
+核心类关系
+MainActivity 继承 Android 的 ComponentActivity
+MainViewModel 聚合 CardRepository 和 NetworkMonitor
+MainScreen 组合 RichText、SwipeToDismissBox 等 UI 组件
+CardEntity 是 Room 数据库实体，由 CardDAO 管理，最终通过 AppDatabase 访问
+第三方组件
+RichText：第三方富文本渲染库（mohamedrejeb/rich-editor）
+SwipeToDismissBox：Jetpack Compose Material3 内置组件
+TopAppBarDefaults：Material3 主题样式库
+自研组件
+OverlayServiceManager：悬浮窗服务管理类，通过 WindowManager 实现
+NetworkMonitor：自定义网络状态监听工具类
+
+设计模式与技术特点
+MVVM 架构
+ViewModel 层（MainViewModel）通过 StateFlow 向 View 层（MainScreen）推送状态更新
+Model 层（CardRepository + Room）与 ViewModel 解耦，通过接口通信
+依赖注入
+使用 Koin 实现依赖注入，例如 MainViewModel 通过 Koin 获取 CardRepository 实例
+声明式 UI
+Jetpack Compose 的 Modifier 链式调用（如 Modifier.padding().fillMaxSize()）实现灵活布局
+@Composable 函数驱动 UI 更新，例如 MainRoute 中的 collectAsStateWithLifecycle 监听 ViewModel 状态
+数据持久化
+Room 数据库通过 CardDAO 接口操作 CardEntity 实体
+AppDatabase 单例模式管理数据库实例
+
+建议学习重点
+Jetpack Compose 的 Modifier 机制
+分析 MainScreen.kt 中 Modifier.align 和 Box 的组合使用，理解 Compose 的布局优先级
+MVVM 状态管理
+研究 MainViewModel 如何通过 MutableStateFlow 驱动 UI 更新
+Room 数据库集成
+查看 CardEntity 的 @Entity 注解与 CardDAO 的 @Query 实现
+悬浮窗服务实现
+跟踪 OverlayServiceManager 如何通过 WindowManager.LayoutParams 创建系统级悬浮窗
+该类图完整反映了项目的架构设计和技术选型，适合初学者从类关系入手理解代码结构。

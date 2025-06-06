@@ -80,8 +80,6 @@ import kotlin.time.Duration.Companion.milliseconds
  * - 调用IntentResolver执行外部意图
  * - 与CardRepository交互实现数据持久化
  */
-
-
 class AiViewModel(
     private val preferenceRepository: PreferenceRepository,
     private val resourceProvider: ResourceProvider,
@@ -258,6 +256,11 @@ class AiViewModel(
         }
     }
 
+    /**
+     * 处理Activity启动时传递的Extras参数
+     * 参数：
+     * - extras: Bundle类型的附加参数
+     */
     fun onExtrasRetrieved(extras: Bundle?) {
         extras ?: return
         uiModeState.value = UiMode.Ask
@@ -269,22 +272,43 @@ class AiViewModel(
         }
     }
 
+    /**
+     * 处理"提问标准"按钮点击事件
+     * 功能：用于触发特定的提问标准操作
+     */
     fun onAskCriteriaClicked() {
-
+        // 实现具体的提问标准逻辑
     }
 
+    /**
+     * 切换全屏显示模式
+     * 功能：在全屏和非全屏之间切换
+     */
     fun onMakeFulScreenClicked() {
         makeFullScreenState.update { !it }
     }
 
+    /**
+     * 处理媒体选择结果
+     * 参数：
+     * - uri: 选中的媒体文件URI
+     */
     fun onPickMediaResult(uri: Uri?) {
         pickedImageState.value = uri?.let { PickedMedia(it) }
     }
 
+    /**
+     * 移除已选中的媒体
+     * 功能：清除当前选中的媒体文件
+     */
     fun onRemovePickedMediaClicked() {
         pickedImageState.value = null
     }
 
+    /**
+     * 发送命令按钮点击处理
+     * 功能：验证输入并启动AI对话流程
+     */
     fun onSendCommandClicked() {
         val openAI = openAIStateFlow.value ?: run {
             messageEventChannel.trySend(resourceProvider.getString(R.string.error_model_config))
@@ -309,6 +333,11 @@ class AiViewModel(
         }
     }
 
+    /**
+     * 准备默认指令
+     * 功能：构建发送给AI的系统指令
+     * 返回值：包含所有指令的字符串
+     */
     private suspend fun prepareDefaultInstructions(): String {
         val englishLevel = preferenceRepository.getPreference(
             Constants.PreferencesKey.keyEnglishLevel,
@@ -328,6 +357,13 @@ class AiViewModel(
         }
     }
 
+    /**
+     * 启动AI对话流程
+     * 参数：
+     * - openAI: OpenAI客户端实例
+     * 异常：
+     * - 可能抛出网络或API相关异常
+     */
     private suspend fun startConversation(openAI: OpenAI) {
         var attachedMediaBase64: String? = null
         pickedImageState.value?.let { pickedMedia ->
@@ -388,10 +424,21 @@ class AiViewModel(
         uiModeState.value = UiMode.Answer
     }
 
+    /**
+     * 类型回答文本到答案区域
+     * 参数：
+     * - text: 要显示的回答文本
+     */
     private fun typeAnswer(text: String) {
         answerTextState.setMarkdown(text)
     }
 
+    /**
+     * 获取要分享的文本
+     * 参数：
+     * - exportType: 导出类型（HTML/Markdown/PLAIN）
+     * 返回值：根据导出类型生成的文本
+     */
     private fun textToShare(exportType: ExportType): String {
         val selection = answerTextState.selection
         val isTextSelected = selection.start != selection.end
@@ -407,10 +454,18 @@ class AiViewModel(
         }
     }
 
+    /**
+     * 触发谷歌搜索
+     * 功能：使用当前答案内容进行谷歌搜索
+     */
     fun onGoogleResultClicked() {
         intentResolver.googleResult(textToShare(ExportType.PLAIN))
     }
 
+    /**
+     * 分享文本
+     * 功能：使用系统分享功能分享当前答案内容
+     */
     fun onShareTextClicked() {
         intentResolver.shareText(
             resourceProvider.getString(R.string.title_share_via),
@@ -418,6 +473,10 @@ class AiViewModel(
         )
     }
 
+    /**
+     * 复制文本
+     * 功能：将当前答案内容复制到剪贴板
+     */
     fun onCopyTextClicked() {
         clipboardManager.copyFormattedTextToClipboard(
             label = resourceProvider.getString(R.string.app_name),
@@ -432,6 +491,10 @@ class AiViewModel(
         )
     }
 
+    /**
+     * 创建Anki卡片
+     * 功能：将当前问题和答案创建为Anki卡片
+     */
     fun onCreateAnkiCardClicked() {
         intentResolver.createAnkiCard(
             commandTextState.text.toString(),
@@ -439,6 +502,10 @@ class AiViewModel(
         )
     }
 
+    /**
+     * 保存为临时卡片
+     * 功能：将当前问答对保存为临时卡片
+     */
     fun onSaveAsCardClicked() {
         viewModelScope.launch(exceptionHandler) {
             cardRepository.insertCard(
@@ -453,6 +520,10 @@ class AiViewModel(
         }
     }
 
+    /**
+     * 开始新的问答
+     * 功能：重置界面开始新的对话
+     */
     fun onAskAnotherQuestionClicked() {
         answerTextState.clear()
         commandTextState.clearText()
@@ -460,9 +531,13 @@ class AiViewModel(
         uiModeState.value = UiMode.Ask
     }
 
+    /**
+     * 文本转语音
+     * 功能：将当前答案内容转换为语音
+     */
     fun onTextToSpeechClicked() {
         /**
-         * Disable the speech to text until is ready.
+         * 禁用语音转文本
          */
         messageEventChannel.trySend(resourceProvider.getString(R.string.error_speech_to_text_not_ready))
     }

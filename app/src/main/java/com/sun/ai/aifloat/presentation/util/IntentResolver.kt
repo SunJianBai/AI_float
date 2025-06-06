@@ -8,14 +8,14 @@ import androidx.core.net.toUri
 import com.sun.ai.aifloat.common.Constants
 
 /**
- * 启动谷歌网络搜索意图并返回操作结果状态
+ * 启动网络搜索意图并返回操作结果状态
  *
  * @param query 需要执行搜索的查询内容
  * @return Boolean 指示意图启动是否成功（true=成功启动，false=启动失败）
  */
 class IntentResolver(private val context: Context) {
 
-// 执行谷歌网络搜索
+// 执行网络搜索
 fun googleResult(query: String): Boolean {
     return launchIntent {
         // 设置意图动作为网络搜索

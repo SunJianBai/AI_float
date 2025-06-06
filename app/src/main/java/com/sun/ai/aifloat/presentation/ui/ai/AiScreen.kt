@@ -134,6 +134,13 @@ import kotlinx.coroutines.launch
  * - 可通过修改UiMode支持更多界面状态
  */
 
+/**
+ * AI对话主路由组件
+ * 参数：
+ * - modifier: 修饰符
+ * - viewModel: 数据模型
+ * - onOutSideClicked: 外部点击事件回调
+ */
 @Composable
 fun AiRoute(
     modifier: Modifier = Modifier, 
@@ -152,15 +159,42 @@ fun AiRoute(
     val lifecycleAwareSpeechRecognizer = remember {
         LifecycleAwareSpeechRecognizer.Builder(context, lifecycleOwner)
             .recognitionListener(object : RecognitionListener {
-                override fun onReadyForSpeech(params: Bundle?) {}
-                override fun onBeginningOfSpeech() {}
-                override fun onRmsChanged(rmsdB: Float) {}
-                override fun onBufferReceived(buffer: ByteArray?) {}
-                override fun onEndOfSpeech() {}
-                override fun onError(error: Int) {}
-                override fun onResults(results: Bundle?) {}
-                override fun onPartialResults(partialResults: Bundle?) {}
-                override fun onEvent(eventType: Int, params: Bundle?) {}
+                override fun onReadyForSpeech(params: Bundle?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onBeginningOfSpeech() {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onRmsChanged(rmsdB: Float) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onBufferReceived(buffer: ByteArray?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onEndOfSpeech() {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onError(error: Int) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onResults(results: Bundle?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onPartialResults(partialResults: Bundle?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onEvent(eventType: Int, params: Bundle?) {
+                    TODO("Not yet implemented")
+                }
+
             })
             .partialRecognitionResults(true)
             .build()
@@ -216,6 +250,12 @@ fun AiRoute(
     )
 }
 
+/**
+ * 主屏幕容器组件
+ * 参数：
+ * - modifier: 修饰符
+ * - 其他参数省略...
+ */
 @Composable
 private fun AiScreen(
     modifier: Modifier = Modifier,
