@@ -46,8 +46,8 @@ fun googleResult(query: String): Boolean {
     ): Boolean {
         return launchIntent {
             action = Constants.Intent.ANKI_ACTION
-            putExtra(Constants.Intent.CARD_FRONT, front)
-            putExtra(Constants.Intent.CARD_BACK, back)
+            putExtra(Constants.Intent.CARD_FRONT, front) // 正面内容
+            putExtra(Constants.Intent.CARD_BACK, back)    // 背面内容
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
             `package` = Constants.Intent.ANKI_PACKAGE
         }

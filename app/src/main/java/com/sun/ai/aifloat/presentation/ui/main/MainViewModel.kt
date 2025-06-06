@@ -1,13 +1,20 @@
 package com.sun.ai.aifloat.presentation.ui.main
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.compose.runtime.State
+import androidx.compose.runtime.Stable
 import com.sun.ai.aifloat.R
 import com.sun.ai.aifloat.common.Constants
 import com.sun.ai.aifloat.domain.CardRepository
 import com.sun.ai.aifloat.domain.PreferenceRepository
 import com.sun.ai.aifloat.domain.entity.Card
+import com.sun.ai.aifloat.presentation.ui.ai.AiScreenState
 import com.sun.ai.aifloat.presentation.ui.core.model.UiText
+import com.sun.ai.aifloat.presentation.util.ClipboardManager
 import com.sun.ai.aifloat.presentation.util.IntentResolver
 import com.sun.ai.aifloat.presentation.util.ResourceProvider
 import kotlinx.collections.immutable.persistentListOf
@@ -202,6 +209,7 @@ class MainViewModel(
         SharingStarted.WhileSubscribed(Constants.FLOW_TIMEOUT),
         MainUiState()
     )
+
 
     fun onPreferenceSwitchCheckChange(preferenceItem: PreferenceItem) {
         viewModelScope.launch {

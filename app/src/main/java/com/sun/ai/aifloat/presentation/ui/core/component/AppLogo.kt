@@ -28,13 +28,13 @@ import com.sun.ai.aifloat.presentation.ui.core.theme.margin4
 @Composable
 fun AppLogo(
     modifier: Modifier = Modifier,
-    background: Color = colorResource(R.color.black),
+    background: Color = colorResource(R.color.white),
     shape: Shape = CircleShape,
     borderWidth: Dp = appLogoBorderRadius,
     borderColor: Color = colorResource(R.color.white),
     borderShape: Shape = CircleShape,
     innerPadding: PaddingValues = PaddingValues(margin4),
-    logoColorFilter: ColorFilter = ColorFilter.tint(colorResource(R.color.white)),
+    logoColorFilter: ColorFilter = ColorFilter.tint(colorResource(R.color.black)),
     onClick: () -> Unit = {}
 ) {
     val interactionSource = remember { MutableInteractionSource() }

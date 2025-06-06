@@ -63,6 +63,24 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds
 
+/**
+ * AI功能视图模型
+ * 功能：
+ * - 管理AI对话的核心业务逻辑
+ * - 处理OpenAI API请求/响应
+ * - 维护UI状态
+ * 技术栈：
+ * - 使用Kotlin协程处理异步操作
+ * - 通过Flow实现响应式编程
+ * - 集成OpenAI SDK进行API通信
+ * 组件关系：
+ * - 依赖PreferenceRepository获取用户偏好设置
+ * - 通过NetworkMonitor监控网络状态
+ * - 使用UriConverter处理URI转换
+ * - 调用IntentResolver执行外部意图
+ * - 与CardRepository交互实现数据持久化
+ */
+
 
 class AiViewModel(
     private val preferenceRepository: PreferenceRepository,

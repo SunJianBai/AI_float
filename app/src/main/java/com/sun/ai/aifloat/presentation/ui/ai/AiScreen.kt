@@ -120,59 +120,52 @@ import kotlinx.coroutines.android.awaitFrame
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+/**
+ * AI对话界面UI组件
+ * 功能：
+ * - 实现AI对话功能的各个UI模块
+ * - 管理不同模式下的界面切换（提问/回答/加载/错误）
+ * 技术栈：
+ * - 使用Jetpack Compose构建声明式UI
+ * - 采用ConstraintLayout实现复杂布局
+ * - 使用Material3组件库
+ * 扩展性：
+ * - 可通过扩展AnswerOptions添加新的回答处理方式
+ * - 可通过修改UiMode支持更多界面状态
+ */
+
 @Composable
 fun AiRoute(
-    modifier: Modifier = Modifier, viewModel: AiViewModel, onOutSideClicked: () -> Unit
+    modifier: Modifier = Modifier, 
+    viewModel: AiViewModel, 
+    onOutSideClicked: () -> Unit
 ) {
+    // 收集UI状态并应用到Compose UI
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    // 创建媒体选择器
     val pickMedia = rememberLauncherForActivityResult(
         ActivityResultContracts.PickVisualMedia(),
         remember(viewModel) { viewModel::onPickMediaResult })
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
+    // 创建语音识别器
     val lifecycleAwareSpeechRecognizer = remember {
         LifecycleAwareSpeechRecognizer.Builder(context, lifecycleOwner)
             .recognitionListener(object : RecognitionListener {
-                override fun onReadyForSpeech(params: Bundle?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onBeginningOfSpeech() {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onRmsChanged(rmsdB: Float) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onBufferReceived(buffer: ByteArray?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onEndOfSpeech() {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onError(error: Int) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onResults(results: Bundle?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onPartialResults(partialResults: Bundle?) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onEvent(eventType: Int, params: Bundle?) {
-                    TODO("Not yet implemented")
-                }
-
+                override fun onReadyForSpeech(params: Bundle?) {}
+                override fun onBeginningOfSpeech() {}
+                override fun onRmsChanged(rmsdB: Float) {}
+                override fun onBufferReceived(buffer: ByteArray?) {}
+                override fun onEndOfSpeech() {}
+                override fun onError(error: Int) {}
+                override fun onResults(results: Bundle?) {}
+                override fun onPartialResults(partialResults: Bundle?) {}
+                override fun onEvent(eventType: Int, params: Bundle?) {}
             })
             .partialRecognitionResults(true)
             .build()
     }
+    // 检查是否支持语音输入
     val isTextToSpeechSupported by produceState(
         initialValue = false,
         key1 = lifecycleAwareSpeechRecognizer
@@ -181,11 +174,13 @@ fun AiRoute(
             value = it.supported
         }
     }
+    // 订阅消息事件并显示Toast
     LaunchedEffect(viewModel) {
         viewModel.messageEventFlow.collect {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
     }
+    // 组合所有UI元素
     AiScreen(
         modifier = modifier,
         makeFullScreen = uiState.makeFullScreen,
@@ -202,6 +197,7 @@ fun AiRoute(
         onMakeFulScreenClicked = remember(viewModel) { viewModel::onMakeFulScreenClicked },
         onTextToSpeechClicked = remember(viewModel) { viewModel::onTextToSpeechClicked },
         onOpenGalleryClicked = {
+            // 启动图库选择
             pickMedia.launch(
                 PickVisualMediaRequest.Builder()
                     .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly)
@@ -326,6 +322,7 @@ private fun AskAiCard(
     onSaveAsCardClicked: () -> Unit,
     onAskAnotherQuestionClicked: () -> Unit
 ) {
+    // 根据当前UI模式显示不同界面
     when (uiMode) {
         is UiMode.Answer -> AnswerMode(
             modifier = modifier,
@@ -611,6 +608,12 @@ private fun AnswerOptions(
     onCreateAnkiCardClicked: () -> Unit,
     onSaveAsCardClicked: () -> Unit
 ) {
+    // 回答操作选项面板，包含以下功能：
+    // - 谷歌搜索
+    // - 分享结果
+    // - 复制内容
+    // - 创建Anki卡片
+    // - 保存为临时卡片
     LazyRow(
         modifier,
         horizontalArrangement = Arrangement.Start,
@@ -1170,6 +1173,7 @@ fun AnswerText(
 @Preview
 @Composable
 private fun AiScreenPreview() {
+    // 预览用示例数据
     AskAiCard(
         modifier = Modifier.wrapContentSize(),
         headlineTitle = "Hello World",

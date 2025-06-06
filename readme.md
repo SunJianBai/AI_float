@@ -21,11 +21,11 @@ AiDict 是一款基于 AI 的词典应用，旨在通过即时提供全面的单
 - **无缝集成 Anki**：自动格式化并导出单词解释至 Anki，实现高效的间隔重复学习。
 - **AI 驱动的洞察**：结合可信词典使用 AI 模型，提供最准确和全面的结果。
 
-## 🎯 项目目标
 
-AiDict 是一个个人开源项目，旨在通过减少耗时的操作来优化英语学习体验。它并非为商业用途而设计，而是为了解决个人需求。**任何人不得将此项目用于商业用途。**
 
-## 🛠️ 技术栈
+AiDict 是一个个人开源项目，旨在通过减少耗时的操作来优化英语学习体验。
+
+
 
 ### 📱 Android 框架
 
@@ -38,6 +38,12 @@ AiDict 是一个个人开源项目，旨在通过减少耗时的操作来优化�
 - **图片加载**：Coil（高效处理图像）
 - **依赖注入**：Koin（轻量级依赖管理）
 
+
+
+
+
+![image-20250606211921474](https://raw.githubusercontent.com/SunJianBai/pictures/main/img/202506062119742.png)
+
 ### 🤖 AI 集成
 
 - **AI 服务**：OpenAI & DeepSeek（用于智能单词分析和定义）
@@ -48,57 +54,14 @@ AiDict 是一个个人开源项目，旨在通过减少耗时的操作来优化�
 - 📊 **Anki 导出**：自动将 AI 响应格式化为 Anki 闪卡。
 - 🔧 **可配置的 AI 设置**：在不同 AI 模型间选择以提高成本效益。
 
-## 🏗️ 开发状态
-
-目前，AiDict 处于早期开发阶段。该项目最初使用 Gemini AI 构建，但现在正逐步迁移到 OpenAI 和 DeepSeek 以获得更好的定制性和效率。
-
-## 📸 截图
-
-## 🔮 未来计划
-
-- 🔄 **~~完成从 Gemini 到 OpenAI 和 DeepSeek 的迁移~~**（已完成）
-- 💰 **利用 OpenAI 批处理服务降低成本**
-- 🔗 **集成来源和搜索功能以获得更准确的 AI 结果**
-- 🎯 **微调 AI 模型以节省 Token 并提高准确性**
-- 📂 **从 CSV 文件导入并处理单词**
-- 🎤 **实现语音转文本服务**
-- 🔊 **朗读答案以帮助发音学习**
-- 🔍 **在主页添加 AI 搜索功能**
-- 📸 **添加类似圆形搜索的功能**
-
-## 🤝 贡献
-
-尽管这主要是我个人的项目，但我们始终欢迎贡献、反馈和讨论。欢迎你自由探索、分叉并改进这个仓库！
-
-
-## 🧾 贡献者许可协议 (CLA)
-
-通过向本仓库提交代码、想法或文档，你同意以下条款：
-
-- 你的贡献是在与本项目相同的许可证（MIT + 非商业）下提供的。
-- 你授予项目维护者完全权利，在项目中使用、修改和分发你的贡献，并遵循项目的现有许可证。
-
----
-
-### ⚠️ 免责声明
-
-本项目仍在持续开发中，重点在于功能性而非完美无缺。尽管我努力遵循最佳实践，但仍有许多改进空间。
-如果你发现有待改进之处，欢迎提出建议或进行贡献——非常感谢你的支持！
-我的主要目标是高效地开发这款应用程序，并在此过程中提升自己的语言学习体验。
-感谢你的支持，祝你编码愉快！
-
-
 
 
 以下是项目中各文件的详细中文注释说明：
 
 一、基础模块 (common)
 1. Constants.kt
-```kotlin
-// 全局常量定义
-// 包含请求超时时间、温度参数、SharedPreferences键值等全局配置
-// 示例：REQUEST_TIME_OUT_DEFAULT_VALUE = 30_000L // 默认请求超时时间30秒
-```
+
+
 
 
 二、数据层 (data)
@@ -211,3 +174,293 @@ c. 主界面模块 (main)
 4. 新增功能：参考现有模块的接口设计模式
 
 注：由于代码片段不完整，部分注释基于Android开发通用模式推测，实际注释应结合完整代码内容进行精确标注。
+
+
+
+
+
+
+
+主界面模块
+1.1 卡片列表展示
+1.1.1 卡片数据绑定
+1.1.2 富文本渲染（Markdown支持）
+1.1.3 卡片折叠动画
+1.2 设置选项管理
+1.2.1 设置项状态同步
+1.2.2 设置面板动画展开/收起
+1.2.3 设置项持久化存储
+1.3 悬浮窗触发提示
+1.3.1 屏幕居中提示文案
+1.3.2 提示文案动画效果
+1.3.3 悬浮窗状态检测
+AI对话功能
+2.1 参数校验模块
+2.1.1 API密钥验证
+2.1.2 网络状态检测
+2.1.3 模型参数完整性校验
+2.2 请求构建器
+2.2.1 系统指令组装
+2.2.2 用户输入解析
+2.2.3 图片附件处理
+2.3 API通信层
+2.3.1 OpenAI接口调用
+2.3.2 请求超时处理
+2.3.3 流式响应解析
+2.4 响应处理模块
+2.4.1 Markdown格式渲染
+2.4.2 状态切换动画
+2.4.3 错误信息展示
+数据持久化模块
+3.1 Room数据库
+3.1.1 卡片实体管理
+3.1.2 数据库版本迁移
+3.1.3 增删改查操作
+3.2 偏好设置管理
+3.2.1 配置项序列化
+3.2.2 配置变更监听
+3.2.3 默认值管理
+悬浮窗服务
+4.1 权限管理
+4.1.1 悬浮窗权限申请
+4.1.2 权限状态监听
+4.1.3 权限引导跳转
+4.2 窗口管理
+4.2.1 窗口创建参数配置
+4.2.2 窗口层级管理
+4.2.3 窗口动画控制
+4.3 快捷方式服务
+4.3.1 快捷图标绘制
+4.3.2 点击事件处理
+4.3.3 服务生命周期管理
+UI组件库
+5.1 自定义控件
+5.1.1 富文本编辑器
+5.1.2 滑动删除卡片
+5.1.3 底部设置面板
+5.2 主题系统
+5.2.1 颜色常量定义
+5.2.2 字体样式管理
+5.2.3 间距规范体系
+5.3 动画系统
+5.3.1 卡片滑动动画
+5.3.2 设置面板动画
+5.3.3 状态切换动画
+工具模块
+6.1 网络监控
+6.1.1 网络状态监听
+6.1.2 网络质量检测
+6.1.3 断网提示管理
+6.2 资源管理
+6.2.1 字符串资源封装
+6.2.2 颜色资源管理
+6.2.3 图片资源加载
+6.3 意图解析
+6.3.1 分享内容处理
+6.3.2 Anki卡片创建
+6.3.3 外部协议解析
+架构组件
+7.1 依赖注入
+7.1.1 ViewModel注入
+7.1.2 Repository注入
+7.1.3 Service注入
+7.2 生命周期管理
+7.2.1 Activity生命周期监听
+7.2.2 ViewModel状态保存
+7.2.3 协程作用域管理
+7.3 事件总线
+7.3.1 全局事件订阅
+7.3.2 界面状态同步
+7.3.3 跨组件通信
+
+
+
+
+
+
+
+问：
+
+（1）对用到的算法的说明，简要介绍其算法步骤、时间空间复杂度等（可选） 如果你的App完成的是特定的数据处理工作，需要用到特定的算法，在这里进行说明。 现成的算法，说个名字，给出引用链接就行了。 自己设计的算法，就可以略微展开说说其中的要求与创新点。 算法的具体实现，如果是复用的他人组件，明确指出自己用的是“XXX开源项目”或“XXX的成果”。
+（2）程序架构设计及技术实现方案 App中设计了哪几个类，类之间有何关系：继承、组合、实现某接口……，推荐使用UML类图进行展示。 你将这些类划分成了多少个包？可使用UML包图展示这些包之间的依赖关系 组件化开发：App引用了哪些第三方组件？你自己开发了哪些组件？
+
+
+
+
+
+理解你的问题: doing
+收集相关的信息: doing
+深度思考
+```
+好的，我现在需要帮助用户解答关于他们开发的AI_Float Android应用的两个问题，特别是从初次学习开发的学生角度出发。用户希望得到详细的回答，并且必须基于他们的实际代码。首先，我需要回顾之前提供的项目结构、代码片段和对话历史，确保回答准确。
+
+第一个问题是关于算法的使用。我需要检查代码中是否涉及特定的算法。从之前的项目信息来看，应用主要涉及数据处理、悬浮窗服务、Jetpack Compose UI以及Room数据库等。看起来大部分是标准组件的使用，没有复杂的自定义算法。例如，滑动删除卡片可能使用了默认的Jetpack Compose组件，而AI对话功能可能调用了OpenAI的API，属于现成的服务。因此，在回答中需要明确这些点，指出使用的现成算法或库，并提供相关链接。
+
+第二个问题是关于程序架构和技术实现。用户的应用采用了MVVM架构，这在Android开发中很常见。需要分析类之间的关系，包结构划分，以及使用的第三方组件。根据提供的代码片段，主界面涉及MainActivity、MainViewModel、MainScreen等类，数据层有Room数据库和Repository模式。包结构包括presentation、domain、data等层次。第三方库包括Koin用于依赖注入，Jetpack Compose和Material3组件。需要将这些内容组织成UML类图和包图的描述，说明继承、组合和接口实现关系。
+
+需要注意用户强调要详细且基于实际代码，所以必须引用具体的类和文件路径。例如，MainViewModel使用Koin注入，Room数据库实体CardEntity，以及Compose中的Scaffold和LazyColumn组件。同时，要区分哪些是自定义组件，哪些是第三方库，如RichText编辑器可能使用了外部库。
+
+另外，用户可能希望了解如何组织代码结构，因此需要解释MVVM各层的职责，以及包之间的依赖关系。例如，presentation层依赖domain层，domain层依赖data层。第三方组件如Koin和Material3的使用位置也需要说明。
+
+在回答算法部分时，如果确实没有复杂的自定义算法，应该明确说明，并指出使用了哪些现成的技术，比如Jetpack Compose的内置动画或Room的持久化机制。对于时间空间复杂度，可能不需要深入，但可以简要提及列表渲染的性能考虑，如使用LazyColumn进行高效滚动。
+
+最后，确保回答符合学生的视角，避免过于专业的术语，但又要足够详细，帮助新手理解项目结构和设计思路。可能需要检查是否有遗漏的类或包，确保所有提到的内容都能在提供的代码中找到对应的部分。
+
+```
+以下是针对AI_Float项目的详细技术解析，从学生视角逐步拆解：
+
+---
+
+### **（1）算法说明**
+#### 1.1 数据处理算法
+**场景**：卡片列表的滑动删除与分享逻辑  
+**实现方式**：  
+- 使用 `SwipeToDismissBox` 组件实现左右滑动操作（代码位置：[MainScreen.kt](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\main\MainScreen.kt) 中 `SwipeToDismissBox` 组件）  
+- 算法步骤：  
+  1. 监听滑动方向（StartToEnd 或 EndToStart）  
+  2. 根据方向触发回调函数（[onSwipedToShareCardToAnki](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\main\MainViewModel.kt#L317-L332) 或 [onSwipedToDeleteCard](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\main\MainViewModel.kt#L334-L339)）  
+  3. 执行数据库操作（通过 [CardRepository](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\aifloat\domain\CardRepository.kt#L5-L12) 调用 Room 数据库的 [deleteCard](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\aifloat\domain\CardRepository.kt#L9-L9) 方法）  
+  **复杂度分析**：  
+- 时间复杂度：O(1)（仅触发单次数据库操作）  
+- 空间复杂度：O(1)（不额外占用内存）  
+**依赖组件**：Jetpack Compose 内置组件，官方文档：[SwipeToDismissBox](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary#SwipeToDismissBox)
+
+#### 1.2 AI 对话参数校验算法
+
+**场景**：调用 OpenAI API 前的参数检查  
+**实现方式**：  
+- 在 [MainViewModel](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\main\MainViewModel.kt#L28-L340) 中定义校验逻辑（代码位置：[MainViewModel.kt](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\main\MainViewModel.kt) 的 `validateAIParams` 方法）  
+- 校验步骤：  
+  1. 检查 API 密钥是否为空（`apiKey.isNotBlank()`）  
+  2. 检查网络状态（通过 [NetworkMonitor](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\util\NetworkMonitor.kt#L9-L33) 类监听）  
+  3. 检查模型参数是否完整（如温度值范围 [0, 2]）  
+  **复杂度分析**：  
+- 时间复杂度：O(1)（仅简单条件判断）  
+- 空间复杂度：O(1)  
+**依赖组件**：自定义逻辑，无第三方库
+
+#### 1.3 富文本渲染算法
+
+**场景**：卡片背面内容支持 Markdown 格式显示  
+**实现方式**：  
+- 使用 `RichText` 第三方库（代码位置：[MainScreen.kt](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\main\MainScreen.kt) 中 `RichText` 组件）  
+- 技术原理：  
+  1. 解析 Markdown 字符串（如 `# 标题` 转换为标题样式）  
+  2. 动态构建 `AnnotatedString` 用于 Compose 渲染  
+  **复杂度分析**：  
+- 时间复杂度：O(n)（n 为文本长度）  
+- 空间复杂度：O(n)  
+**依赖组件**：[mohamedrejeb/rich-editor](https://github.com/mohamedrejeb/rich-editor)
+
+---
+
+### **（2）程序架构设计及技术实现方案**
+#### 2.1 类结构与关系
+**UML 类图关键元素**：  
+```plaintext
++------------------------+       +------------------------+
+|   MainActivity        |       |   MainViewModel        |
+|-----------------------|       |------------------------|
+| - viewModel: ViewModel|<------| - uiState: StateFlow   |
+| - requestPermissions()|       | - onSwipedToDeleteCard()|
++------------------------+       | - validateAIParams()   |
+                                +------------------------+
+                                          ↑
+                                          | 实现
++------------------------+       +------------------------+
+|   MainScreen          |       |   CardRepository       |
+|-----------------------|       |------------------------|
+| - MainRoute()         |       | - getAllCards()        |
+| - MainScreen()        |       | - deleteCard()         |
++------------------------+       +------------------------+
+                                          ↑
+                                          | 组合
++------------------------+       +------------------------+
+|   CardEntity          |       |   AppDatabase          |
+|-----------------------|       |------------------------|
+| - id: Int             |       | - cardDAO: CardDAO     |
+| - front: String       |       +------------------------+
+| - back: String        |               ↑
++------------------------+       +------------------------+
+```
+
+
+**类关系说明**：  
+1. **继承**：  
+   - `MainActivity` 继承 `ComponentActivity`（Android 基类）  
+   - `CardEntity` 继承 `Room` 的 `Entity` 注解类  
+2. **组合**：  
+   - `AppDatabase` 组合 `CardDAO` 接口  
+   - `MainViewModel` 组合 `CardRepository`  
+3. **实现**：  
+   - `CardRepository` 实现 `Repository` 接口（代码位置：`CardRepository.kt`）
+
+---
+
+#### 2.2 包结构与依赖关系
+**UML 包图关键元素**：  
+```plaintext
++-------------------+     +-------------------+
+| presentation/     |     | domain/           |
+| - ui/             |     | - entity/         |
+| - viewmodel/      |     | - repository/     |
+| - service/        |     | - usecase/        |
++-------------------+     +-------------------+
+          ↑                      ↑
+          |                      |
++-------------------+     +-------------------+
+| data/             |     | external/         |
+| - db/             |     | - koin/           |
+| - network/        |     | - material3/      |
++-------------------+     | - richeditor/     |
+                          +-------------------+
+```
+
+
+**包依赖关系**：  
+1. `presentation` → `domain`：UI 层调用领域层接口  
+2. `domain` → `data`：领域层依赖数据层实现  
+3. `external` 提供第三方库支持：  
+   - `koin`：依赖注入框架  
+   - `material3`：Jetpack Compose Material 3 组件库  
+   - `richeditor`：富文本渲染库  
+
+---
+
+#### 2.3 组件化开发
+**第三方组件**：  
+| 组件名称        | 用途           | 引用位置                                                     |
+| --------------- | -------------- | ------------------------------------------------------------ |
+| Koin            | 依赖注入       | [Module.kt](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\data\di\Module.kt) |
+| Jetpack Compose | 声明式 UI 开发 | 全项目 UI 文件                                               |
+| Material 3      | 主题与组件样式 | [Theme.kt](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\core\theme\Theme.kt) |
+| RichEditor      | Markdown 渲染  | [build.gradle.kts](file://D:\Codes\Android\AI_Float\build.gradle.kts) |
+
+**自研组件**：  
+1. **悬浮窗服务**：  
+   - [OverlayServiceManager](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\service\OverlayServiceManager.kt#L13-L40)（代码位置：[OverlayServiceManager.kt](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\service\OverlayServiceManager.kt)）  
+   - 技术实现：通过 `WindowManager` 动态添加悬浮窗视图  
+2. **卡片滑动交互**：  
+   - `SwipeToDismissBox` 自定义封装（代码位置：[MainScreen.kt](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\main\MainScreen.kt)）  
+   - 创新点：结合 `animateColorAsState` 实现滑动背景色渐变动画  
+3. **富文本输入**：  
+   - `InputDialogPreferenceItem`（代码位置：[InputDialogPreferenceItem.kt](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\core\component\InputDialogPreferenceItem.kt)）  
+   - 特性：支持语音输入与图片附件预览  
+
+---
+
+### **总结**
+本项目采用 **MVVM 架构 + 单向数据流** 设计：  
+- **数据流向**：`ViewModel` 持有 `StateFlow` → `UI` 收集状态更新 → 用户操作触发 `ViewModel` 方法 → 通过 `Repository` 更新 `Model`  
+- **技术亮点**：  
+  - 使用 Jetpack Compose 实现声明式 UI，减少冗余代码（如 `LazyColumn` 替代 RecyclerView）  
+  - 通过 Koin 实现轻量级依赖注入，避免 Dagger 的复杂配置  
+  - 自定义悬浮窗服务，突破传统 Activity 生命周期限制  
+
+建议初学者重点学习：  
+1. Jetpack Compose 的 [Modifier](file://D:\Codes\Android\AI_Float\app\src\main\java\com\sun\ai\aifloat\presentation\ui\main\MainScreen.kt#L77-L245) 链式调用与布局原理  
+2. Room 数据库与 Kotlin 协程的集成  
+3. 自定义组件的封装技巧（如 `SwipeToDismissBox` 的复用性设计）
+
+
+
