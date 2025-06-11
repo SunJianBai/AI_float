@@ -490,15 +490,25 @@ class AiViewModel(
             htmlTextToCopy = textToShare(ExportType.HTML)
         )
     }
-
+    private fun splitAnkiContent(text: String): Pair<String, String> {
+        val frontPattern = "正面：(.*?)背面：".toRegex()
+        val frontMatch = frontPattern.find(text)
+        val front = frontMatch?.groupValues?.get(1)?.trim() ?: ""
+        val backPattern = "背面：(.*)".toRegex()
+        val backMatch = backPattern.find(text)
+        val back = backMatch?.groupValues?.get(1)?.trim() ?: text
+        return Pair(front, back)
+    }
     /**
      * 创建Anki卡片
      * 功能：将当前问题和答案创建为Anki卡片
      */
     fun onCreateAnkiCardClicked() {
+        val front = commandTextState.text.toString()
+        val back = textToShare(exportType.value)
         intentResolver.createAnkiCard(
-            commandTextState.text.toString(),
-            textToShare(exportType.value)
+            front,
+            back
         )
     }
 
